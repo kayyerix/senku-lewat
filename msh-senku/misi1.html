@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misi 1</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Misi 1</h1>
+
+    <p class="subtitle">
+      Ditemukan data berikut:
+      <br><br>
+      Nama: Anjarrahmat Soebardjo<br>
+      Jabatan: Guru Informatika<br>
+      Tahun masuk: 2012
+      <br><br>
+      Login:
+      <br>
+      Username: admin
+    </p>
+
+    <input 
+      type="text" 
+      id="jawabanMisi1" 
+      placeholder="Masukkan password..."
+    />
+
+    <p id="errorMisi1" class="error-text"></p>
+
+
+    <button onclick="cekMisi1()">Submit</button>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    cekAkses("namaPlayer", "index.html");
+  </script>
+</body>
+</html>
