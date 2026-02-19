@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misi 2</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+
+    <div id="nyawa"></div>
+
+    <div class="progress">
+      <div id="bar"></div>
+    </div>
+
+    <h1>Misi 2</h1>
+
+    <p class="subtitle">
+      Di laporan sistem terdapat kalimat berikut:
+      <br><br>
+      "Verifikasi internal berhasil dengan kode keamanan X9-27Z."
+      <br><br>
+      Masukkan kode yang ditemukan.
+    </p>
+
+    <input 
+      type="text" 
+      id="jawabanMisi2" 
+      placeholder="Masukkan kode..."
+    />
+
+    <p id="errorMisi2" class="error-text"></p>
+
+    <button onclick="cekMisi2()">Submit</button>
+
+  </div>
+
+  <div id="jumpscare">😝</div>
+
+  <script src="js/main.js"></script>
+  <script>
+    cekAkses("misi1", "misi1.html");
+    updateNyawaDisplay();
+    setProgress(66);
+  </script>
+
+</body>
+</html>
