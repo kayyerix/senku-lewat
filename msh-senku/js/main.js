@@ -1,4 +1,37 @@
 // =============================
+// SETUP AWAL (NYAWA + PROGRESS)
+// =============================
+if (!localStorage.getItem("nyawa")) {
+  localStorage.setItem("nyawa", 3);
+}
+
+function updateNyawaDisplay() {
+  const el = document.getElementById("nyawa");
+  if (el) {
+    el.textContent = "❤️ Nyawa: " + localStorage.getItem("nyawa");
+  }
+}
+
+function kurangNyawa() {
+  let nyawa = parseInt(localStorage.getItem("nyawa"));
+  nyawa--;
+  localStorage.setItem("nyawa", nyawa);
+
+  updateNyawaDisplay();
+
+  if (nyawa <= 0) {
+    window.location.href = "index.html";
+  }
+}
+
+function setProgress(persen) {
+  const bar = document.getElementById("bar");
+  if (bar) {
+    bar.style.width = persen + "%";
+  }
+}
+
+// =============================
 // HELPER FUNCTION
 // =============================
 function tampilkanError(id, pesan) {
@@ -21,10 +54,10 @@ function mulaiGame() {
 
   tampilkanError("errorNama", "");
 
-  // Simpan nama
   localStorage.setItem("namaPlayer", nama);
 
-  // Reset progress
+  // Reset progress + nyawa
+  localStorage.setItem("nyawa", 3);
   localStorage.removeItem("misi1");
   localStorage.removeItem("misi2");
   localStorage.removeItem("misi3");
@@ -33,7 +66,7 @@ function mulaiGame() {
 }
 
 // =============================
-// TAMPILKAN NAMA DI BRIEFING
+// TAMPILKAN NAMA
 // =============================
 function tampilkanNama() {
   const nama = localStorage.getItem("namaPlayer");
@@ -47,13 +80,6 @@ function tampilkanNama() {
   if (salam) {
     salam.textContent = "Selamat datang, Agent " + nama + ".";
   }
-}
-
-// =============================
-// LANJUT KE MISI 1
-// =============================
-function lanjutKeMisi1() {
-  window.location.href = "misi1.html";
 }
 
 // =============================
@@ -76,11 +102,11 @@ function cekMisi1() {
     .toLowerCase();
 
   if (jawaban === "anjar2012") {
-    tampilkanError("errorMisi1", "");
     localStorage.setItem("misi1", "selesai");
     window.location.href = "misi2.html";
   } else {
     tampilkanError("errorMisi1", "Password salah. Analisis lagi.");
+    kurangNyawa();
   }
 }
 
@@ -94,11 +120,11 @@ function cekMisi2() {
     .trim();
 
   if (jawaban === "X9-27Z") {
-    tampilkanError("errorMisi2", "");
     localStorage.setItem("misi2", "selesai");
     window.location.href = "misi3.html";
   } else {
     tampilkanError("errorMisi2", "Kode salah. Teliti lagi.");
+    kurangNyawa();
   }
 }
 
@@ -107,7 +133,6 @@ function cekMisi2() {
 // =============================
 function cekMisi3(pilihan) {
   if (pilihan === "C") {
-    tampilkanError("errorMisi3", "");
     localStorage.setItem("misi3", "selesai");
     window.location.href = "final.html";
   } else {
@@ -115,11 +140,12 @@ function cekMisi3(pilihan) {
       "errorMisi3",
       "Pilihan kurang tepat. Jangan mudah tertipu."
     );
+    kurangNyawa();
   }
 }
 
 // =============================
-// FINAL PAGE BADGE
+// FINAL PAGE
 // =============================
 function tampilkanBadge() {
   const nama = localStorage.getItem("namaPlayer");
